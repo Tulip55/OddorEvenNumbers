@@ -5,7 +5,6 @@ pipeline {
         SONARQUBE_SERVER = 'http://127.0.0.1:9000'
         DOCKER_IMAGE = 'butterfly88/java-app:latest'
     }
-}
 
     stages {
         stage('Checkout') {
