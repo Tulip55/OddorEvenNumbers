@@ -7,6 +7,8 @@ pipeline {
     }
 
     environment {
+	    JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
         SCANNER_HOME = tool 'sonar-scanner'
         DOCKERHUB_USERNAME = 'butterfly88'
         DOCKER_IMAGE = "${DOCKERHUB_USERNAME}/spotify-app:latest"
@@ -68,9 +70,11 @@ pipeline {
         }
     }
 
-    post {
+     post {
         always {
-            archiveArtifacts artifacts: '**/*.class', fingerprint: true
+            node {
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
         }
     }
 }
