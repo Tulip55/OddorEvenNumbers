@@ -55,7 +55,7 @@ stages{
 	stage('Push to DockerHub'){
            steps{
 	      script{
-		withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable 'DOCKERHUB'
+		withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKERHUB_USERNAME, passwordVariable: 'DOCKER_PASS)]){
 		echo "Docker Hub Username: ${DOCKER_USERNAME}"
 		echo "Docker Image: ${DPCKER_IMAGE}"
 		sh "docker login -u ${DOCKER-USERNAME} -p ${DOCKER_PASSWORD}"
@@ -63,6 +63,7 @@ stages{
               }
            }
          }
+      }
        post {
         always {
             archiveArtifacts artifacts: '**/*.class', fingerprint: true
