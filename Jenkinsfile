@@ -55,7 +55,7 @@ stages{
 	stage('Push to DockerHub'){
            steps{
 	      script{
-		withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKERHUB_USERNAME, passwordVariable: 'DOCKER_PASS)]){
+		withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKERHUB_USERNAME, passwordVariable: 'DOCKERHUB_PASS)]){
 		sh 'echo "Docker Username: $DOCKER_USER"'
 		}
 	      }
