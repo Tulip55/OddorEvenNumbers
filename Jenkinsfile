@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-	    JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
+        JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
         SCANNER_HOME = tool 'sonar-scanner'
         DOCKERHUB_USERNAME = 'butterfly88'
