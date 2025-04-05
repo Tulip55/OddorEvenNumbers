@@ -86,4 +86,5 @@ pipeline {
             echo 'Build Failed. Check logs for errors.'
         }
     }
+  }
 }
