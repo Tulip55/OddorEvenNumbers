@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git credentials: 'docker-hub-creds', url: 'https://github.com/Tulip55/OddorEvenNumbers.git'
+                git credentialsId: 'docker-hub-creds', url: 'https://github.com/Tulip55/OddorEvenNumbers.git'
             }
         }
 
@@ -86,5 +86,4 @@ pipeline {
             echo 'Build Failed. Check logs for errors.'
         }
     }
-  }
 }
