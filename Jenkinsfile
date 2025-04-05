@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-	      JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
+	JAVA_HOME = "/usr/lib/jvm/java-17-openjdk"
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
         SCANNER_HOME = tool 'sonar-scanner'
         DOCKERHUB_USERNAME = 'butterfly88'
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Test') {
             steps {
-	            dir(OddorEvenNumbers'){
+	            dir('OddorEvenNumbers'){
                 script {
                     docker.image("openjdk:11-jdk").inside {
                         sh "mvn test"
@@ -43,7 +43,7 @@ pipeline {
 
         stage('Sonar Analysis') {
             steps {
-	            dir(OddorEvenNumbers'){
+	            dir('OddorEvenNumbers'){
                 script {
                     docker.image("openjdk:8-jdk").inside {
                         withSonarQubeEnv('sonar-server') {
