@@ -23,12 +23,15 @@
 
         stage('Compile') {
             steps {
+	       dir('OddorEvennumbers'){
                 sh "mvn compile"
             }
         }
+    }
 
         stage('Test') {
             steps {
+	       dir(OddorEvenNumbers'){
                 script {
                     docker.image("openjdk:11-jdk").inside {
                         sh "mvn test"
@@ -36,9 +39,11 @@
                 }
             }
         }
+     }
 
         stage('Sonar Analysis') {
             steps {
+	       dir(OddorEvenNumbers'){
                 script {
                     docker.image("openjdk:8-jdk").inside {
                         withSonarQubeEnv('sonar-server') {
@@ -48,9 +53,11 @@
                 }
             }
         }
+   }
 
         stage('Build') {
             steps {
+               dir('OddorEvenNumbers'){
                 script {
                     docker.image("openjdk:17-jdk").inside {
                         sh "mvn package"
@@ -58,6 +65,7 @@
                 }
             }
         }
+    }
 
         stage('Push to DockerHub') {
             steps {
@@ -68,11 +76,10 @@
                 }
             }
         }
-    }
 
       post {
         always {
-            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
 	}
        
         failure {
